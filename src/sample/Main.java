@@ -14,10 +14,36 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main extends Application {
     String nickname;
+    String receiver;
+    SendMessage smsg;
+
+    void initializeCommunication(){
+        Socket socket = null;
+        try {
+            socket = new Socket("127.0.0.1", 59090);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        smsg = new SendMessage(socket, nickname, "B");
+        Thread sendMessage = new Thread(smsg);
+        //zamienic receiver zeby sie dalo ustawiac nie tylko przy tworzeniu!
+
+        Thread readMessage = new Thread(new ReadMessage(socket));
+
+        readMessage.start();
+        sendMessage.start();
+
+    }
 
     ListView<String> getUserList(){
         ListView<String> userList = new ListView<>();
@@ -60,13 +86,27 @@ public class Main extends Application {
             public void handle(MouseEvent mouseEvent) {
                 userDialog.close();
                 chatDialog.show();
+                initializeCommunication();
             }
         });
 
         BorderPane chatContainer = new BorderPane();        //main pane
         VBox messagesContainer = new VBox();
         TextField messageField = new TextField();
+
         Button sendBtn = new Button("Send");
+        sendBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                if(!messageField.getText().isEmpty()){
+                    //pass value to client.sendmessage
+                    smsg.setLine(messageField.getText());
+                }
+            }
+        });
+
+
+
         HBox bottomContainer = new HBox();
 
 
@@ -87,23 +127,23 @@ public class Main extends Application {
         chatContainer.setTop(messagesContainer);
         chatContainer.setBottom(bottomContainer);
 
-        //https://stackoverflow.com/questions/41851501/how-to-design-chatbox-gui-using-javafx/41851855
-
         Scene chatScene = new Scene(chatContainer, 500, 300);
         chatDialog.setScene(chatScene);
 
-
-
-
-
-
         nicknameDialog.show();
 
+        //ZMIENIC SCANNER NA DANE Z OKIENEK
+        //I WCZYTYWAC NAME Z PIERWSZEGO OKIENKA
+
+
+
         //https://stackoverflow.com/questions/40777560/auto-scroll-in-javafx
+        //https://stackoverflow.com/questions/41851501/how-to-design-chatbox-gui-using-javafx/41851855
     }
 
 
     public static void main(String[] args) {
         launch(args);
+
     }
 }
