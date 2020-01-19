@@ -1,0 +1,9 @@
+ctrl+alt+shift+s
+Artifacts
++ -> jar -> from modules with dependencies
+Main class: sample.Main
+Apply
+Ok
+Build-> Build with artifacts -> Build
+
+java --module-path /usr/share/openjfx/lib --add-modules=javafx.base,javafx.controls,javafx.fxml,javafx.graphics,javafx.media,javafx.web -jar CommuniCATor.jar 

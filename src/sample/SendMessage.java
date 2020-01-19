@@ -9,15 +9,12 @@ import java.net.Socket;
 class SendMessage implements Runnable{
     String name;
     Socket socket;
-    String receiver;
     ObjectOutputStream os = null;
     BufferedReader reader = null;
+    volatile String receiver;
+    volatile String line;
 
-    /*public void setReceiver(String receiver){
-        this.receiver = receiver;
-    }*/
-
-    SendMessage(Socket s, String n, String receiver){
+    SendMessage(Socket s, String n){
         this.socket = s;
         this.name = n;
 
@@ -30,10 +27,13 @@ class SendMessage implements Runnable{
         }
     }
 
-    volatile String line;
     void setLine(String s){
         line = s;
         System.out.println("setting line = " + line);
+    }
+
+    public void setReceiver(String receiver){
+        this.receiver = receiver;
     }
 
     @Override

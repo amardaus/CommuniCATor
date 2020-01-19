@@ -18,12 +18,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Main extends Application {
+    final int width = 800, height = 500;
     String nickname;
-    String receiver;
-    SendMessage smsg;
+    SendMessage sendMessage;
 
     void initializeCommunication(){
         Socket socket = null;
@@ -34,15 +33,12 @@ public class Main extends Application {
             e.printStackTrace();
         }
 
-        smsg = new SendMessage(socket, nickname, "B");
-        Thread sendMessage = new Thread(smsg);
-        //zamienic receiver zeby sie dalo ustawiac nie tylko przy tworzeniu!
+        sendMessage = new SendMessage(socket, nickname);
+        Thread sendMessageThread = new Thread(sendMessage);
+        Thread readMessageThread = new Thread(new ReadMessage(socket));
 
-        Thread readMessage = new Thread(new ReadMessage(socket));
-
-        readMessage.start();
-        sendMessage.start();
-
+        readMessageThread.start();
+        sendMessageThread.start();
     }
 
     ListView<String> getUserList(){
@@ -74,9 +70,9 @@ public class Main extends Application {
 
         VBox nicknameVBox = new VBox();
         nicknameVBox.getChildren().addAll(enterNickname, nicknameField, nicknameBtn);
-        Scene nicknameScene = new Scene(nicknameVBox, 300, 300);
+        Scene nicknameScene = new Scene(nicknameVBox, width, height);
         VBox userListBox = new VBox();
-        Scene userListDialog = new Scene(userListBox, 300, 300);
+        Scene userListDialog = new Scene(userListBox, width, height);
         userDialog.setScene(userListDialog);
         nicknameDialog.setScene(nicknameScene);
         ListView<String> userList = getUserList();
@@ -99,8 +95,8 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 if(!messageField.getText().isEmpty()){
-                    //pass value to client.sendmessage
-                    smsg.setLine(messageField.getText());
+                    sendMessage.setLine(messageField.getText());
+                    sendMessage.setReceiver("B");
                 }
             }
         });

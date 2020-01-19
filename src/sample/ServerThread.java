@@ -35,7 +35,7 @@ public class ServerThread extends Thread{
         try {
             while (true){
                 msg = (Message) is.readObject();
-                System.out.println(msg.sender + ": " + msg.msg);
+                System.out.println(msg.sender + ": " + msg.msg + "---->" + msg.receiver);
 
                 for(int i = 0; i < MainServer.clientCount; i++){
                     if(MainServer.clientList.get(i).name.equals(msg.receiver)){

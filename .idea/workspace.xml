@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="CommuniCATor:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sample/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/MainServer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/MainServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Message.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Message.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/ReadMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/SendMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/ServerThread.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/ServerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/CommuniCATor_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/JavaFXApp.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CommuniCATor/sample/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CommuniCATor/sample/Main$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CommuniCATor/sample/Main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CommuniCATor/sample/Main$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CommuniCATor/sample/Main$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CommuniCATor/sample/Main$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CommuniCATor/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CommuniCATor/sample/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CommuniCATor/sample/SendMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CommuniCATor/sample/SendMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CommuniCATor/sample/ServerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CommuniCATor/sample/ServerThread.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/SendMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/SendMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ServerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ServerThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ServerThread.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,19 +108,20 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/sample" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../untitled" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/sample" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/sample" />
     </key>
   </component>
@@ -243,26 +248,30 @@
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="693" y="160" key="#com.intellij.ide.macro.MacrosDialog/0.0.1920.1044@0.0.1920.1044" timestamp="1579348351571" />
-    <state x="546" y="206" key="FileChooserDialogImpl" timestamp="1579348432375">
+    <state x="631" y="267" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1579448818483">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="546" y="206" key="FileChooserDialogImpl/0.0.1920.1044@0.0.1920.1044" timestamp="1579348432375" />
-    <state width="1864" height="230" key="GridCell.Tab.0.bottom" timestamp="1579441721076">
+    <state x="631" y="267" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1044@0.0.1920.1044" timestamp="1579448818483" />
+    <state x="546" y="206" key="FileChooserDialogImpl" timestamp="1579445568488">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1864" height="230" key="GridCell.Tab.0.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1579441721076" />
-    <state width="1864" height="230" key="GridCell.Tab.0.center" timestamp="1579441721075">
+    <state x="546" y="206" key="FileChooserDialogImpl/0.0.1920.1044@0.0.1920.1044" timestamp="1579445568488" />
+    <state width="1864" height="230" key="GridCell.Tab.0.bottom" timestamp="1579450157773">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1864" height="230" key="GridCell.Tab.0.center/0.0.1920.1044@0.0.1920.1044" timestamp="1579441721075" />
-    <state width="1864" height="230" key="GridCell.Tab.0.left" timestamp="1579441721075">
+    <state width="1864" height="230" key="GridCell.Tab.0.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1579450157773" />
+    <state width="1864" height="230" key="GridCell.Tab.0.center" timestamp="1579450157772">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1864" height="230" key="GridCell.Tab.0.left/0.0.1920.1044@0.0.1920.1044" timestamp="1579441721075" />
-    <state width="1864" height="230" key="GridCell.Tab.0.right" timestamp="1579441721075">
+    <state width="1864" height="230" key="GridCell.Tab.0.center/0.0.1920.1044@0.0.1920.1044" timestamp="1579450157772" />
+    <state width="1864" height="230" key="GridCell.Tab.0.left" timestamp="1579450157772">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1864" height="230" key="GridCell.Tab.0.right/0.0.1920.1044@0.0.1920.1044" timestamp="1579441721075" />
+    <state width="1864" height="230" key="GridCell.Tab.0.left/0.0.1920.1044@0.0.1920.1044" timestamp="1579450157772" />
+    <state width="1864" height="230" key="GridCell.Tab.0.right" timestamp="1579450157773">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state width="1864" height="230" key="GridCell.Tab.0.right/0.0.1920.1044@0.0.1920.1044" timestamp="1579450157773" />
     <state width="1864" height="323" key="GridCell.Tab.1.bottom" timestamp="1579363222534">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
@@ -279,10 +288,10 @@
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state width="1864" height="323" key="GridCell.Tab.1.right/0.0.1920.1044@0.0.1920.1044" timestamp="1579363222533" />
-    <state x="316" y="0" width="1288" height="1048" key="SettingsEditor" timestamp="1579348439192">
+    <state x="316" y="0" width="1288" height="1048" key="SettingsEditor" timestamp="1579448839886">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="316" y="0" width="1288" height="1048" key="SettingsEditor/0.0.1920.1044@0.0.1920.1044" timestamp="1579348439192" />
+    <state x="316" y="0" width="1288" height="1048" key="SettingsEditor/0.0.1920.1044@0.0.1920.1044" timestamp="1579448839886" />
     <state x="539" y="9" width="840" height="1034" key="search.everywhere.popup" timestamp="1579354924657">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
