@@ -63,15 +63,6 @@ public class ServerThread extends Thread{
         Message msg;
 
         try {
-            /*
-            for(int i = 0; i < MainServer.clientCount; i++){
-                //System.out.println("$" + MainServer.clientList.get(i).name);
-                if(MainServer.clientList.get(i).name.equals(initialMessage.sender)){
-                    sendListOfUsers(i, MainServer.clientList.get(i).os);
-                }
-            }*/
-
-
             while (true){
                 msg = (Message) is.readObject();
 

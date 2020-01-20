@@ -81,6 +81,7 @@ public class Client extends Application {
                 nicknameDialog.close();
                 userDialog.show();
                 initializeCommunication();
+                sendMessage.send();
             }
         });
 
@@ -125,14 +126,13 @@ public class Client extends Application {
                 if(!messageField.getText().isEmpty()){
                     sendMessage.setLine(messageField.getText());
                     sendMessage.setReceiver("B");
+                    sendMessage.send();
                 }
             }
         });
         HBox bottomContainer = new HBox();
 
         ArrayList<Label> messages = new ArrayList<>();
-
-
 
         messages.add(new Label("hello"));
         messages.add(new Label("hi"));
@@ -154,8 +154,6 @@ public class Client extends Application {
         Scene chatScene = new Scene(chatContainer, 500, 300);
         chatDialog.setScene(chatScene);
         nicknameDialog.show();
-
-
         //https://stackoverflow.com/questions/40777560/auto-scroll-in-javafx
         //https://stackoverflow.com/questions/41851501/how-to-design-chatbox-gui-using-javafx/41851855
     }
@@ -163,6 +161,5 @@ public class Client extends Application {
 
     public static void main(String[] args) {
         launch(args);
-
     }
 }
