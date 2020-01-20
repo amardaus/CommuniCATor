@@ -16,8 +16,6 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -26,7 +24,7 @@ import java.util.List;
 
 public class Client extends Application {
     final int width = 800, height = 500;
-    String nickname;
+    String sender, receiver;
     SendMessage sendMessage;
     ReadMessage readMessage;
 
@@ -39,7 +37,7 @@ public class Client extends Application {
             e.printStackTrace();
         }
 
-        sendMessage = new SendMessage(socket, nickname);
+        sendMessage = new SendMessage(socket, sender);
         readMessage = new ReadMessage(socket);
         Thread sendMessageThread = new Thread(sendMessage);
         Thread readMessageThread = new Thread(readMessage);
@@ -52,12 +50,9 @@ public class Client extends Application {
         List<String> userList = new ArrayList<>();
 
         if(sendMessage != null){
-            sendMessage.setLine("init");
-            sendMessage.setReceiver("server");
-
             String list = readMessage.msg.msg;
-            System.out.println(list);
-            String[] str = list.split(" ");
+            String[] str = list.split(",");
+            sendMessage.send(sender, receiver, "init");
             userList = Arrays.asList(str);
         }
         return userList;
@@ -65,30 +60,30 @@ public class Client extends Application {
 
     @Override
     public void start(Stage primaryStage){
-        Stage nicknameDialog = new Stage();
+        Stage senderDialog = new Stage();
         Stage userDialog = new Stage();
         Stage chatDialog = new Stage();
 
-        Button nicknameBtn = new Button("Ok");
-        Text enterNickname = new Text(50, 50, "Enter your nickname");
-        enterNickname.setFont(Font.font(20));
-        TextField nicknameField = new TextField();
+        Button senderBtn = new Button("Ok");
+        Text entersender = new Text(50, 50, "Enter your sender");
+        entersender.setFont(Font.font(20));
+        TextField senderField = new TextField();
 
-        nicknameBtn.setOnAction(new EventHandler<ActionEvent>() {
+        senderBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                nickname = nicknameField.getText();
-                nicknameDialog.close();
-                userDialog.show();
+                sender = senderField.getText();
+                senderDialog.close();
                 initializeCommunication();
-                sendMessage.send();
+                sendMessage.send(sender, "server", "init");
+                userDialog.show();
             }
         });
 
-        VBox nicknameVBox = new VBox();
-        nicknameVBox.getChildren().addAll(enterNickname, nicknameField, nicknameBtn);
-        Scene nicknameScene = new Scene(nicknameVBox, width, height);
-        nicknameDialog.setScene(nicknameScene);
+        VBox senderVBox = new VBox();
+        senderVBox.getChildren().addAll(entersender, senderField, senderBtn);
+        Scene senderScene = new Scene(senderVBox, width, height);
+        senderDialog.setScene(senderScene);
 
         VBox userListBox = new VBox();
         Scene userListDialog = new Scene(userListBox, width, height);
@@ -103,6 +98,7 @@ public class Client extends Application {
         refreshBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                sendMessage.send(sender, "server", "init");
                 userList.setItems(FXCollections.observableList(getUserList()));
             }
         });
@@ -110,6 +106,7 @@ public class Client extends Application {
         userList.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                receiver = userList.getSelectionModel().getSelectedItem();
                 userDialog.close();
                 chatDialog.show();
             }
@@ -124,14 +121,12 @@ public class Client extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 if(!messageField.getText().isEmpty()){
-                    sendMessage.setLine(messageField.getText());
-                    sendMessage.setReceiver("B");
-                    sendMessage.send();
+                    sendMessage.send(sender, receiver, messageField.getText());
                 }
             }
         });
-        HBox bottomContainer = new HBox();
 
+        HBox bottomContainer = new HBox();
         ArrayList<Label> messages = new ArrayList<>();
 
         messages.add(new Label("hello"));
@@ -141,8 +136,6 @@ public class Client extends Application {
 
         messagesContainer.getChildren().addAll(messages);
         bottomContainer.setAlignment(Pos.BOTTOM_CENTER);
-
-
         //multiple messages instead of single textfield
 
         bottomContainer.getChildren().addAll(messageField, sendBtn);
@@ -153,7 +146,7 @@ public class Client extends Application {
 
         Scene chatScene = new Scene(chatContainer, 500, 300);
         chatDialog.setScene(chatScene);
-        nicknameDialog.show();
+        senderDialog.show();
         //https://stackoverflow.com/questions/40777560/auto-scroll-in-javafx
         //https://stackoverflow.com/questions/41851501/how-to-design-chatbox-gui-using-javafx/41851855
     }

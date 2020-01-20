@@ -8,8 +8,6 @@ class SendMessage implements Runnable{
     String name;
     Socket socket;
     ObjectOutputStream os = null;
-    volatile String receiver;
-    volatile String line;
 
     SendMessage(Socket s, String n){
         this.socket = s;
@@ -26,33 +24,18 @@ class SendMessage implements Runnable{
         }
     }
 
-    void setLine(String s){
-        line = s;
-        System.out.println("setting line = " + line);
-    }
-
-    public void setReceiver(String receiver){
-        this.receiver = receiver;
-    }
-
-    void send(){
-        if(line != null){
-            if(!line.isEmpty()){
-                System.out.println("sending message!");
-                Message msg = new Message(name, receiver, line);
-                try {
-                    os.writeObject(msg);
-                    os.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                line = null;
-            }
+    void send(String s, String r, String l){
+        Message msg = new Message(s, r, l);
+        try {
+            os.writeObject(msg);
+            os.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     @Override
     public void run() {
-        
+
     }
 }

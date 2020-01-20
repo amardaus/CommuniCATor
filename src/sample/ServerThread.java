@@ -1,8 +1,5 @@
 package sample;
 
-import com.sun.tools.javac.Main;
-import javafx.application.Platform;
-
 import java.io.*;
 import java.net.Socket;
 
@@ -32,10 +29,6 @@ public class ServerThread extends Thread{
 
     ServerThread findUser(Message msg){
         for(int i = 0; i < MainServer.clientCount; i++){
-            System.out.println("i"+i);
-            System.out.println("count" + MainServer.clientCount);
-            System.out.println(MainServer.clientList.get(i).name);
-            System.out.println("sender:" + msg.sender);
             if(MainServer.clientList.get(i).name.equals(msg.sender)){
                 return MainServer.clientList.get(i);
             }
@@ -47,7 +40,7 @@ public class ServerThread extends Thread{
         StringBuilder s = new StringBuilder();
         for(int i = 0; i < MainServer.clientCount; i++){
             if(MainServer.clientList.get(i) != user){
-                s.append(MainServer.clientList.get(i).name);
+                s.append(MainServer.clientList.get(i).name + ",");
             }
         }
         Message listOfUsers = new Message("server", name, s.toString());
@@ -65,7 +58,6 @@ public class ServerThread extends Thread{
         try {
             while (true){
                 msg = (Message) is.readObject();
-
                 if(msg.msg.equals("init")){
                     name = msg.sender;
                     sendListOfUsers(findUser(msg));
@@ -82,7 +74,7 @@ public class ServerThread extends Thread{
             }
         }
         catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("IO error in server thread");
         }
         catch(ClassNotFoundException e){
