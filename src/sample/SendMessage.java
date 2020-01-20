@@ -10,7 +10,6 @@ class SendMessage implements Runnable{
     String name;
     Socket socket;
     ObjectOutputStream os = null;
-    BufferedReader reader = null;
     volatile String receiver;
     volatile String line;
 
@@ -20,7 +19,10 @@ class SendMessage implements Runnable{
 
         try {
             os = new ObjectOutputStream(socket.getOutputStream());
-            reader = new BufferedReader(new InputStreamReader(System.in));
+
+            Message initialMsg = new Message(name, "server", "init");
+            os.writeObject(initialMsg);
+            os.flush();
         }
         catch (IOException e) {
             e.printStackTrace();

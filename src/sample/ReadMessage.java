@@ -1,10 +1,13 @@
 package sample;
 
+import javafx.application.Platform;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
 class ReadMessage implements Runnable{
+    Message msg;
     Socket socket;
     ObjectInputStream is;
 
@@ -22,9 +25,10 @@ class ReadMessage implements Runnable{
     public void run() {
         while(true){
             try{
-                Message msg = (Message)is.readObject();
+                msg = (Message)is.readObject();
                 if(msg != null){
                     System.out.println(msg.sender + ": " + msg.msg);
+                    //instead of printing, I should create a new label
                 }
             }
             catch (IOException | ClassNotFoundException e) {
