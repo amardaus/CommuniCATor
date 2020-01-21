@@ -74,7 +74,6 @@ public class ServerThread extends Thread{
             }
         }
         catch (IOException e) {
-            //e.printStackTrace();
             System.out.println("IO error in server thread");
         }
         catch(ClassNotFoundException e){
