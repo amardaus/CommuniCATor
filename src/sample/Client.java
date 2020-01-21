@@ -2,6 +2,7 @@ package sample;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,6 +28,8 @@ public class Client extends Application {
     String sender, receiver;
     SendMessage sendMessage;
     ReadMessage readMessage;
+    static VBox messagesContainer;
+
 
     void initializeCommunication(){
         Socket socket = null;
@@ -58,6 +61,10 @@ public class Client extends Application {
         return userList;
     }
 
+    static void showMessage(Message msg){
+        messagesContainer.getChildren().add(new Label(msg.msg));
+    }
+
     @Override
     public void start(Stage primaryStage){
         Stage senderDialog = new Stage();
@@ -65,7 +72,7 @@ public class Client extends Application {
         Stage chatDialog = new Stage();
 
         Button senderBtn = new Button("Ok");
-        Text entersender = new Text(50, 50, "Enter your sender");
+        Text entersender = new Text(50, 50, "Enter your nickname");
         entersender.setFont(Font.font(20));
         TextField senderField = new TextField();
 
@@ -113,8 +120,17 @@ public class Client extends Application {
         });
 
         BorderPane chatContainer = new BorderPane();
-        VBox messagesContainer = new VBox();
+        messagesContainer = new VBox();
         TextField messageField = new TextField();
+
+        List<String> list = new ArrayList<>();
+        ObservableList<String> observableList = FXCollections.observableList(list);
+        observableList.addListener(new ListChangeListener<String>() {
+            @Override
+            public void onChanged(Change<? extends String> change) {
+                messagesContainer.getChildren().add(new Label(change.getList().get(list.size()-1)));
+            }
+        });
 
         Button sendBtn = new Button("Send");
         sendBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -122,21 +138,14 @@ public class Client extends Application {
             public void handle(ActionEvent actionEvent) {
                 if(!messageField.getText().isEmpty()){
                     sendMessage.send(sender, receiver, messageField.getText());
+                    observableList.add(messageField.getText());
+                    messageField.setText("");
                 }
             }
         });
 
         HBox bottomContainer = new HBox();
-        ArrayList<Label> messages = new ArrayList<>();
-
-        messages.add(new Label("hello"));
-        messages.add(new Label("hi"));
-        messages.add(new Label("how are u?"));
-        messages.add(new Label("fine, thx"));
-
-        messagesContainer.getChildren().addAll(messages);
         bottomContainer.setAlignment(Pos.BOTTOM_CENTER);
-        //multiple messages instead of single textfield
 
         bottomContainer.getChildren().addAll(messageField, sendBtn);
         HBox.setHgrow(messageField, Priority.ALWAYS);

@@ -14,13 +14,9 @@
       <change beforePath="$PROJECT_DIR$/out/production/CommuniCATor/sample/Client$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CommuniCATor/sample/Client$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CommuniCATor/sample/Client$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CommuniCATor/sample/Client$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CommuniCATor/sample/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CommuniCATor/sample/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CommuniCATor/sample/SendMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CommuniCATor/sample/SendMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CommuniCATor/sample/ServerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CommuniCATor/sample/ServerThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CommuniCATor/sample/ReadMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CommuniCATor/sample/ReadMessage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/ReadMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ReadMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/SendMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/SendMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ServerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ServerThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ServerThread.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,22 +252,22 @@
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="546" y="206" key="FileChooserDialogImpl/0.0.1920.1044@0.0.1920.1044" timestamp="1579445568488" />
-    <state width="1864" height="230" key="GridCell.Tab.0.bottom" timestamp="1579534555016">
+    <state width="1864" height="230" key="GridCell.Tab.0.bottom" timestamp="1579565526563">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1864" height="230" key="GridCell.Tab.0.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1579534555016" />
-    <state width="1864" height="230" key="GridCell.Tab.0.center" timestamp="1579534555015">
+    <state width="1864" height="230" key="GridCell.Tab.0.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1579565526563" />
+    <state width="1864" height="230" key="GridCell.Tab.0.center" timestamp="1579565526562">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1864" height="230" key="GridCell.Tab.0.center/0.0.1920.1044@0.0.1920.1044" timestamp="1579534555015" />
-    <state width="1864" height="230" key="GridCell.Tab.0.left" timestamp="1579534555015">
+    <state width="1864" height="230" key="GridCell.Tab.0.center/0.0.1920.1044@0.0.1920.1044" timestamp="1579565526562" />
+    <state width="1864" height="230" key="GridCell.Tab.0.left" timestamp="1579565526562">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1864" height="230" key="GridCell.Tab.0.left/0.0.1920.1044@0.0.1920.1044" timestamp="1579534555015" />
-    <state width="1864" height="230" key="GridCell.Tab.0.right" timestamp="1579534555015">
+    <state width="1864" height="230" key="GridCell.Tab.0.left/0.0.1920.1044@0.0.1920.1044" timestamp="1579565526562" />
+    <state width="1864" height="230" key="GridCell.Tab.0.right" timestamp="1579565526563">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1864" height="230" key="GridCell.Tab.0.right/0.0.1920.1044@0.0.1920.1044" timestamp="1579534555015" />
+    <state width="1864" height="230" key="GridCell.Tab.0.right/0.0.1920.1044@0.0.1920.1044" timestamp="1579565526563" />
     <state width="1864" height="323" key="GridCell.Tab.1.bottom" timestamp="1579363222534">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
