@@ -30,8 +30,7 @@ class ReadMessage implements Runnable{
 
     @Override
     public void run() {
-        while(!quit){   //quit sie nie zmienia wiec on probuje zczytac zamknietego strumienia
-            System.out.println("Quit: " + quit);
+        while(!quit){
             try{
                 msg = (Message)is.readObject();
                 if(msg != null && !msg.sender.equals("server")){

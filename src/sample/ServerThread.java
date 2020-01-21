@@ -76,7 +76,7 @@ public class ServerThread extends Thread{
                         }
                     }
                 }
-                else{
+                else {
                     for(int i = 0; i < MainServer.clientCount; i++){
                         if(MainServer.clientList.get(i).name.equals(msg.receiver)){
                             MainServer.clientList.get(i).os.writeObject(msg);
@@ -89,10 +89,7 @@ public class ServerThread extends Thread{
         }
 
         /*
-        *   - USUWANIE WATKU Z CLIENTLIST GDY CLIENT SIE ROZLACZY (MOZE WIADOMOSC ZE KONIEC?)
-        *   - SCROLLABLE HBOX
-        *   - OGÓLNIE POPRAWIĆ LAYOUT
-        *   - SSL
+        *   - SSL !!!!!!!!!!!!!
         * */
 
         catch (IOException e) {

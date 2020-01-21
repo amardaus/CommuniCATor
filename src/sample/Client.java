@@ -9,10 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
@@ -63,7 +60,7 @@ public class Client extends Application {
     }
 
     static void showMessage(Message msg){
-        messagesContainer.getChildren().add(new Label(msg.msg));
+        messagesContainer.getChildren().add(new ReceiverLabel(msg.msg));
     }
 
     @Override
@@ -71,6 +68,10 @@ public class Client extends Application {
         Stage senderDialog = new Stage();
         Stage userDialog = new Stage();
         Stage chatDialog = new Stage();
+        senderDialog.setTitle("comuniCATor");
+        userDialog.setTitle("comuniCATor");
+        chatDialog.setTitle("comuniCATor");
+
 
         Button senderBtn = new Button("Ok");
         Text entersender = new Text(50, 50, "Enter your nickname");
@@ -114,7 +115,7 @@ public class Client extends Application {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 receiver = userList.getSelectionModel().getSelectedItem();
-                if(receiver != null){   //zostaje zerowy element!
+                if(receiver != null && !receiver.isBlank() && !receiver.isEmpty()){
                     openChat = true;
                     userDialog.close();
                     chatDialog.show();
@@ -131,7 +132,7 @@ public class Client extends Application {
         observableList.addListener(new ListChangeListener<String>() {
             @Override
             public void onChanged(Change<? extends String> change) {
-                messagesContainer.getChildren().add(new Label(change.getList().get(list.size()-1)));
+                messagesContainer.getChildren().add(new SenderLabel(change.getList().get(list.size()-1)));
             }
         });
 
@@ -150,17 +151,31 @@ public class Client extends Application {
         HBox bottomContainer = new HBox();
         bottomContainer.setAlignment(Pos.BOTTOM_CENTER);
 
+        HBox nameContainer = new HBox();
+        nameContainer.setStyle("-fx-background-color: #4dc4be;");
+        nameContainer.setAlignment(Pos.TOP_CENTER);
+        nameContainer.setPrefHeight(20);
+        nameContainer.getChildren().add(new Label(receiver));
+        System.out.println("rec: " + receiver); //null :(
+
         bottomContainer.getChildren().addAll(messageField, sendBtn);
         HBox.setHgrow(messageField, Priority.ALWAYS);
 
-        chatContainer.setTop(messagesContainer);
+
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setPrefHeight(height-30);
+
+        scrollPane.setPannable(true);
+        scrollPane.setContent(messagesContainer);
+        scrollPane.vvalueProperty().bind(messagesContainer.heightProperty());
+
+        chatContainer.setTop(nameContainer);
+        chatContainer.setCenter(scrollPane);
         chatContainer.setBottom(bottomContainer);
 
-        Scene chatScene = new Scene(chatContainer, 500, 300);
+        Scene chatScene = new Scene(chatContainer, width, height);
         chatDialog.setScene(chatScene);
         senderDialog.show();
-        //https://stackoverflow.com/questions/40777560/auto-scroll-in-javafx
-        //https://stackoverflow.com/questions/41851501/how-to-design-chatbox-gui-using-javafx/41851855
 
         chatDialog.setOnCloseRequest(e -> {
             readMessage.stopRunning();
