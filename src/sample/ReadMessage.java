@@ -10,6 +10,7 @@ class ReadMessage implements Runnable{
     Message msg;
     Socket socket;
     ObjectInputStream is;
+    volatile boolean quit = false;
 
     ReadMessage(Socket s){
         try {
@@ -21,9 +22,16 @@ class ReadMessage implements Runnable{
         }
     }
 
+    public void stopRunning()
+    {
+        quit = true;
+    }
+
+
     @Override
     public void run() {
-        while(true){
+        while(!quit){   //quit sie nie zmienia wiec on probuje zczytac zamknietego strumienia
+            System.out.println("Quit: " + quit);
             try{
                 msg = (Message)is.readObject();
                 if(msg != null && !msg.sender.equals("server")){
@@ -34,7 +42,7 @@ class ReadMessage implements Runnable{
                 }
             }
             catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
             }
         }
     }

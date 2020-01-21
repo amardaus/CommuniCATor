@@ -32,7 +32,6 @@ public class Client extends Application {
     static VBox messagesContainer;
     boolean openChat = false;
 
-
     void initializeCommunication(){
         Socket socket = null;
         try {
@@ -107,7 +106,6 @@ public class Client extends Application {
         refreshBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                sendMessage.send(sender, "server", "init");
                 userList.setItems(FXCollections.observableList(getUserList()));
             }
         });
@@ -165,7 +163,7 @@ public class Client extends Application {
         //https://stackoverflow.com/questions/41851501/how-to-design-chatbox-gui-using-javafx/41851855
 
         chatDialog.setOnCloseRequest(e -> {
-            System.out.println("Bye");
+            readMessage.stopRunning();
             sendMessage.send(sender, "server", "quit");
             Platform.exit();
             System.exit(0);
@@ -173,7 +171,7 @@ public class Client extends Application {
 
         userDialog.setOnCloseRequest(e -> {
             if(!openChat){
-                System.out.println("Bye");
+                readMessage.stopRunning();
                 sendMessage.send(sender, "server", "quit");
                 Platform.exit();
                 System.exit(0);

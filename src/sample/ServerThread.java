@@ -65,16 +65,13 @@ public class ServerThread extends Thread{
                     sendListOfUsers(findUser(msg));
                 }
                 else if(msg.msg.equals("quit")){
-                    System.out.println("q");
                     for(int i = 0; i < MainServer.clientCount; i++){
                         if(MainServer.clientList.get(i).name.equals(msg.sender)){
-                            System.out.println("Removing client: " + MainServer.clientList.get(i).name);
                             MainServer.clientList.remove(i);
                             MainServer.clientCount--;
                             os.close();
                             is.close();
                             quit = true;
-                            System.out.println("Removed");
                             break;
                         }
                     }
