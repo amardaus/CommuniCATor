@@ -4,11 +4,14 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 
 public class MainServer {
     static int clientCount = 0;
     static ArrayList<ServerThread> clientList = new ArrayList<>();
+    //static HashMap<String, ServerThread> clientMap = new HashMap<>();   //zamiast listy?
     BlockingQueue<Message> queue;
 
     public static void main(String[] args) {

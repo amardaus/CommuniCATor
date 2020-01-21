@@ -54,13 +54,30 @@ public class ServerThread extends Thread{
 
     public void run(){
         Message msg;
+        boolean quit = false;
 
         try {
-            while (true){
+            while (!quit){
                 msg = (Message) is.readObject();
                 if(msg.msg.equals("init")){
+                    System.out.println("i");
                     name = msg.sender;
                     sendListOfUsers(findUser(msg));
+                }
+                else if(msg.msg.equals("quit")){
+                    System.out.println("q");
+                    for(int i = 0; i < MainServer.clientCount; i++){
+                        if(MainServer.clientList.get(i).name.equals(msg.sender)){
+                            System.out.println("Removing client: " + MainServer.clientList.get(i).name);
+                            MainServer.clientList.remove(i);
+                            MainServer.clientCount--;
+                            os.close();
+                            is.close();
+                            quit = true;
+                            System.out.println("Removed");
+                            break;
+                        }
+                    }
                 }
                 else{
                     for(int i = 0; i < MainServer.clientCount; i++){
@@ -78,9 +95,11 @@ public class ServerThread extends Thread{
         *   - USUWANIE WATKU Z CLIENTLIST GDY CLIENT SIE ROZLACZY (MOZE WIADOMOSC ZE KONIEC?)
         *   - SCROLLABLE HBOX
         *   - OGÓLNIE POPRAWIĆ LAYOUT
+        *   - SSL
         * */
 
         catch (IOException e) {
+            e.printStackTrace();
             System.out.println("IO error in server thread");
         }
         catch(ClassNotFoundException e){

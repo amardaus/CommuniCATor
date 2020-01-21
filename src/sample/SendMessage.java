@@ -24,8 +24,8 @@ class SendMessage implements Runnable{
         }
     }
 
-    void send(String s, String r, String l){
-        Message msg = new Message(s, r, l);
+    void send(String sender, String receiver, String line){
+        Message msg = new Message(sender, receiver, line);
         try {
             os.writeObject(msg);
             os.flush();

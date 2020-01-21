@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -29,6 +30,7 @@ public class Client extends Application {
     SendMessage sendMessage;
     ReadMessage readMessage;
     static VBox messagesContainer;
+    boolean openChat = false;
 
 
     void initializeCommunication(){
@@ -114,8 +116,11 @@ public class Client extends Application {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 receiver = userList.getSelectionModel().getSelectedItem();
-                userDialog.close();
-                chatDialog.show();
+                if(receiver != null){   //zostaje zerowy element!
+                    openChat = true;
+                    userDialog.close();
+                    chatDialog.show();
+                }
             }
         });
 
@@ -158,6 +163,22 @@ public class Client extends Application {
         senderDialog.show();
         //https://stackoverflow.com/questions/40777560/auto-scroll-in-javafx
         //https://stackoverflow.com/questions/41851501/how-to-design-chatbox-gui-using-javafx/41851855
+
+        chatDialog.setOnCloseRequest(e -> {
+            System.out.println("Bye");
+            sendMessage.send(sender, "server", "quit");
+            Platform.exit();
+            System.exit(0);
+        });
+
+        userDialog.setOnCloseRequest(e -> {
+            if(!openChat){
+                System.out.println("Bye");
+                sendMessage.send(sender, "server", "quit");
+                Platform.exit();
+                System.exit(0);
+            }
+        });
     }
 
 
