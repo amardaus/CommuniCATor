@@ -73,6 +73,13 @@ public class ServerThread extends Thread{
                 }
             }
         }
+
+        /*
+        *   - USUWANIE WATKU Z CLIENTLIST GDY CLIENT SIE ROZLACZY (MOZE WIADOMOSC ZE KONIEC?)
+        *   - SCROLLABLE HBOX
+        *   - OGÓLNIE POPRAWIĆ LAYOUT
+        * */
+
         catch (IOException e) {
             System.out.println("IO error in server thread");
         }
