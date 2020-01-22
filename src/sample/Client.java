@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.tools.javac.Main;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -10,15 +11,17 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import javax.net.ssl.SSLSocket;
-import javax.net.ssl.SSLSocketFactory;
 import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,13 +35,9 @@ public class Client extends Application {
     boolean openChat = false;
 
     void initializeCommunication(){
-        SSLSocket socket = null;
-        //System.setProperty("javax.net.ssl.trustStore", "/home/olcia/Documents/key.pfx");
-        //System.setProperty("javax.net.ssl.trustStorePassword", "sample");
-
-        SSLSocketFactory sslSocketFactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
+        Socket socket = null;
         try {
-            socket = (SSLSocket) sslSocketFactory.createSocket("127.0.0.1", 4444);
+            socket = new Socket("127.0.0.1", 59090);
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -117,14 +116,23 @@ public class Client extends Application {
             }
         });
 
+        HBox nameContainer = new HBox();
+        nameContainer.setStyle("-fx-background-color: #4dc4be;");
+        nameContainer.setAlignment(Pos.TOP_CENTER);
+        nameContainer.setPrefHeight(20);
+
         userList.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 receiver = userList.getSelectionModel().getSelectedItem();
                 if(receiver != null && !receiver.isBlank() && !receiver.isEmpty()){
                     openChat = true;
-                    userDialog.close();
+                    Label receiverName = new Label(receiver);
+                    receiverName.setFont(new Font("Cambria", 26));
+                    receiverName.setTextFill(Color.web("#FFFFFF"));
+                    nameContainer.getChildren().add(receiverName);
                     chatDialog.show();
+                    userDialog.close();
                 }
             }
         });
@@ -154,17 +162,8 @@ public class Client extends Application {
             }
         });
 
-
         HBox bottomContainer = new HBox();
         bottomContainer.setAlignment(Pos.BOTTOM_CENTER);
-
-        HBox nameContainer = new HBox();
-        nameContainer.setStyle("-fx-background-color: #4dc4be;");
-        nameContainer.setAlignment(Pos.TOP_CENTER);
-        nameContainer.setPrefHeight(20);
-        nameContainer.getChildren().add(new Label(receiver));
-        System.out.println("rec: " + receiver); //null :(
-
         bottomContainer.getChildren().addAll(messageField, sendBtn);
         HBox.setHgrow(messageField, Priority.ALWAYS);
 

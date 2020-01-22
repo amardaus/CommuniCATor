@@ -1,15 +1,15 @@
 package sample;
 
-import javax.net.ssl.SSLSocket;
 import java.io.*;
+import java.net.Socket;
 
 public class ServerThread extends Thread{
-    SSLSocket socket;
+    Socket socket;
     ObjectInputStream is = null;
     ObjectOutputStream os = null;
     String name;
 
-    public ServerThread(SSLSocket s){
+    public ServerThread(Socket s){
         this.socket = s;
         try {
             is = new ObjectInputStream(socket.getInputStream());
@@ -52,8 +52,7 @@ public class ServerThread extends Thread{
         try {
             while (!quit){
                 msg = (Message) is.readObject();
-                if(msg.msg.equals("init")){
-                    System.out.println("i");
+                if(msg.msg.equals("init")) {
                     name = msg.sender;
                     sendListOfUsers(findUser(msg));
                 }
