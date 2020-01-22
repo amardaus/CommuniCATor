@@ -15,8 +15,10 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
 import java.io.IOException;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,9 +32,13 @@ public class Client extends Application {
     boolean openChat = false;
 
     void initializeCommunication(){
-        Socket socket = null;
+        SSLSocket socket = null;
+        //System.setProperty("javax.net.ssl.trustStore", "/home/olcia/Documents/key.pfx");
+        //System.setProperty("javax.net.ssl.trustStorePassword", "sample");
+
+        SSLSocketFactory sslSocketFactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
         try {
-            socket = new Socket("127.0.0.1", 59090);
+            socket = (SSLSocket) sslSocketFactory.createSocket("127.0.0.1", 4444);
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -147,6 +153,7 @@ public class Client extends Application {
                 }
             }
         });
+
 
         HBox bottomContainer = new HBox();
         bottomContainer.setAlignment(Pos.BOTTOM_CENTER);

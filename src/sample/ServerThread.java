@@ -1,22 +1,15 @@
 package sample;
 
+import javax.net.ssl.SSLSocket;
 import java.io.*;
-import java.net.Socket;
-
-    /*
-    * Serwer oczekuje na przychodzące połączenia, wysyła listę użytkowników (identyfikatorów),
-    * przyjmuje wiadomości i wysyła je do odpowiednich klientów.
-    * Serwer powinien przechowywać listę wszystkich użytkowników,
-    * w razie gdy któryś nie jest połączony może buforować wiadomości do niego.
-    */
 
 public class ServerThread extends Thread{
-    Socket socket;
+    SSLSocket socket;
     ObjectInputStream is = null;
     ObjectOutputStream os = null;
     String name;
 
-    public ServerThread(Socket s){
+    public ServerThread(SSLSocket s){
         this.socket = s;
         try {
             is = new ObjectInputStream(socket.getInputStream());
@@ -87,10 +80,6 @@ public class ServerThread extends Thread{
                 }
             }
         }
-
-        /*
-        *   - SSL !!!!!!!!!!!!!
-        * */
 
         catch (IOException e) {
             e.printStackTrace();
